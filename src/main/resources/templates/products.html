@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Products</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>price</th>
+        <th>quantity</th>
+        <th>description</th>
+        <th>category</th>
+        <th>operate</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td contenteditable='false' th:text="${product.name}"></td>
+        <td contenteditable='false' th:text="${product.price}"></td>
+        <td contenteditable='false' th:text="${product.quantity}"></td>
+        <td contenteditable='false' th:text="${product.description}"></td>
+        <td contenteditable='false' th:text="${product.category}"></td>
+        <td>
+            <form action="/products/modify" method="post" enctype="multipart/form-data">
+                <input hidden type="number" name="id" th:value="${product.id}"/>
+                <input type="text" th:value="${product.name}" name="modifiedName">
+                <input type="text" th:value="${product.price}" name="modifiedPrice">
+                <input type="text" th:value="${product.quantity}" name="modifiedQuantity">
+                <input type="text" th:value="${product.description}" name="modifiedDescription">
+                <input type="text" th:value="${product.category}" name="modifiedCategory">
+                <input type="file" name="modifiedFiles" multiple="multiple">
+                <input type="submit" value="Modify"/>
+            </form>
+            <form action="/products/delete" method="post">
+                <input hidden type="number" name="id" th:value="${product.id}"/>
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<form action="/products/add" method="post" enctype="multipart/form-data">
+    </br></br></br></br>
+    Name:<input type="text" name="name"/></br>
+    Price:<input type="text" name="price"/></br>
+    Quantity:<input type="text" name="quantity"/></br>
+    Description:<input type="text" name="description"/></br>
+    Category:<input type="text" name="category"/></br>
+    Files:<input type="file" name="files" multiple="multiple"/></br>
+    <input type="submit" value="Add"></br></br></br></br>
+</form>
+
+<form action="/products/sub" method="post" enctype="multipart/form-data">
+    </br></br></br></br>
+    Name:<input type="text" name="name"/></br>
+    <input type="submit" value="Sub"></br></br></br></br>
+</form>
+
+</body>
+</html>
