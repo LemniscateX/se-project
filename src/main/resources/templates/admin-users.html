@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,11 +9,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Error</title>
+    <title>用户管理</title>
 </head>
 <body>
-<a href="javascript:history.back()">返回</a>
-
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand mb-0 h1" href="/admin/index">首页</a>
+    <a class="navbar-brand mb-0 h1">用户管理页</a>
+    <form class="form-inline" action="/admin/logout" method="get">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">退出</button>
+    </form>
+</nav>
+<div style="padding: 100px 100px">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>邮箱</th>
+            <th>密码</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.password}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

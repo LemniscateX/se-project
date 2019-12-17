@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>商品</title>
+
+    <style>
+        img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .kitchen, .bathroom, .bedroom, .personal {
+            margin: 30px 10px;
+            display: inline-grid;
+        }
+
+        #kitchen-container, #bathroom-container, #bedroom-container, #personal-container {
+            width: 1570px;
+            margin: auto;
+        }
+
+        h2 {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand mb-0 h1" href="/user/index">首页</a>
+    <a class="navbar-brand mb-0 h1">所有商品</a>
+    <form class="form-inline" action="/user/logout" method="get">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">退出</button>
+    </form>
+</nav>
+
+<div style="padding: 100px 0">
+    <div id="kitchen-container">
+        <h2>厨房电器</h2>
+        <div class="kitchen" th:each="kitchenProduct : ${kitchenProducts}">
+            <img th:src="'../' + ${kitchenProduct.photosPath}" alt="" src=""/>
+            <div th:text="${kitchenProduct.name}"></div>
+            <div th:text="${kitchenProduct.price}"></div>
+            <form action="/user/makeBill" method="post">
+                <input hidden type="number" name="productId" th:value="${kitchenProduct.id}">
+                <input hidden type="number" name="userId" th:value="${userId}">
+                <input type="submit" class="btn btn-outline-dark" value="购买">
+            </form>
+        </div>
+    </div>
+
+    <div id="bathroom-container">
+        <h2>卫浴电器</h2>
+        <div class="bathroom" th:each="bathroomProduct : ${bathroomProducts}">
+            <img th:src="'../' + ${bathroomProduct.photosPath}" alt="" src=""/>
+            <div th:text="${bathroomProduct.name}"></div>
+            <div th:text="${bathroomProduct.price}"></div>
+            <form action="/user/makeBill" method="post">
+                <input hidden type="number" name="productId" th:value="${bathroomProduct.id}">
+                <input hidden type="number" name="userId" th:value="${userId}">
+                <input type="submit" class="btn btn-outline-dark" value="购买">
+            </form>
+        </div>
+    </div>
+
+    <div id="bedroom-container">
+        <h2>生活电器</h2>
+        <div class="bedroom" th:each="bedroomProduct : ${bedroomProducts}">
+            <img th:src="'../' + ${bedroomProduct.photosPath}" alt="" src=""/>
+            <div th:text="${bedroomProduct.name}"></div>
+            <div th:text="${bedroomProduct.price}"></div>
+            <form action="/user/makeBill" method="post">
+                <input hidden type="number" name="productId" th:value="${bedroomProduct.id}">
+                <input hidden type="number" name="userId" th:value="${userId}">
+                <input type="submit" class="btn btn-outline-dark" value="购买">
+            </form>
+        </div>
+    </div>
+
+    <div id="personal-container">
+        <h2>个护健康</h2>
+        <div class="personal" th:each="personalProduct : ${personalProducts}">
+            <img th:src="'../' + ${personalProduct.photosPath}" alt="" src=""/>
+            <div th:text="${personalProduct.name}"></div>
+            <div th:text="${personalProduct.price}"></div>
+            <form action="/user/makeBill" method="post">
+                <input hidden type="number" name="productId" th:value="${personalProduct.id}">
+                <input hidden type="number" name="userId" th:value="${userId}">
+                <input type="submit" class="btn btn-outline-dark" value="购买">
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

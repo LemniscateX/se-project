@@ -9,10 +9,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Error</title>
+    <style>
+        h2 {
+            margin: 100px 0;
+        }
+
+        .auth-div {
+            width: 500px;
+            margin: 200px auto auto;
+            text-align: center;
+        }
+
+        .btn {
+            width: 100px;
+            margin: 10px 0;
+        }
+    </style>
+
+    <title>家电销售系统</title>
 </head>
 <body>
-<a href="javascript:history.back()">返回</a>
+<div class="auth-div">
+    <h2>家电销售系统</h2>
+    <form action="/user/register" method="get">
+        <input type="submit" class="btn btn-outline-dark" value="注册">
+    </form>
+    <form action="/user/login" method="get">
+        <input type="submit" class="btn btn-outline-dark" value="登录">
+    </form>
+</div>
+<!--<button onclick="window.location.href='admin-products.html'">管理商品</button>-->
+<!--<button onclick="window.location.href='admin-bills.html'">管理订单</button>-->
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

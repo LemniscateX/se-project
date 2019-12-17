@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,10 +9,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Error</title>
+    <title>订单提交</title>
 </head>
 <body>
-<a href="javascript:history.back()">返回</a>
+<div style="width: 500px; margin: 200px auto auto;">
+    <form action="/user/submitBill" method="post">
+        <div class="form-group">
+            <label for="productCount">购买数量</label>
+            <input type="number" class="form-control" id="productCount" name="productCount">
+        </div>
+        <div class="form-group">
+            <label for="receiverName">收货人姓名</label>
+            <input type="text" class="form-control" id="receiverName" name="receiverName">
+        </div>
+        <div class="form-group">
+            <label for="receiverTel">收货人电话</label>
+            <input type="text" class="form-control" id="receiverTel" name="receiverTel">
+        </div>
+        <div class="form-group">
+            <label for="receiverAddress">收货人地址</label>
+            <textarea class="form-control" id="receiverAddress" name="receiverAddress"></textarea>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">提交</button>
+    </form>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -25,5 +45,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+
 </body>
 </html>

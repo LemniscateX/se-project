@@ -10,4 +10,7 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     @Transactional
     Product getProductById(Integer id);
+
+    @Transactional
+    Product[] findAllByCategory(String category);
 }

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>订单管理</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand mb-0 h1" href="/admin/index">首页</a>
+    <a class="navbar-brand mb-0 h1">订单管理页</a>
+    <form class="form-inline" action="/admin/logout" method="get">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">退出</button>
+    </form>
+</nav>
+<div style="padding: 100px 100px">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>订单编号</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>商品数量</th>
+            <th>订单金额</th>
+            <th>订单状态</th>
+            <th>顾客编号</th>
+            <th>收件人姓名</th>
+            <th>收件人电话</th>
+            <th>收件人地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bill : ${bills}">
+            <td th:text="${bill.id}"></td>
+            <td th:text="${bill.product.name}"></td>
+            <td th:text="${bill.productPrice}"></td>
+            <td th:text="${bill.productCount}"></td>
+            <td th:text="${bill.totalPrice}"></td>
+            <td th:text="${bill.status}"></td>
+            <td th:text="${bill.userId}"></td>
+            <td th:text="${bill.receiverName}"></td>
+            <td th:text="${bill.receiverTel}"></td>
+            <td th:text="${bill.receiverAddress}"></td>
+            <td th:switch="${bill.status}">
+                <form th:case="submitted" action="/admin/bill/ship" method="post">
+                    <input hidden type="number" name="id" th:value="${bill.id}">
+                    <input type="submit" class="btn btn-primary" value="发货">
+                </form>
+                <span th:case="shipped">已发货</span>
+                <span th:case="finished">已完成</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

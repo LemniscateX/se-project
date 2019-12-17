@@ -1,14 +1,13 @@
 package io.github.lemniscatex.webapp.repository;
 
-import io.github.lemniscatex.webapp.model.User;
+import io.github.lemniscatex.webapp.model.Bill;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface BillRepository extends CrudRepository<Bill, Integer> {
     @Transactional
-    Boolean existsByEmail(String email);
+    Bill getBillById(Integer id);
 
     @Transactional
-    User getUserByEmail(String email);
+    Bill[] findAllByUserId(Integer userId);
 }

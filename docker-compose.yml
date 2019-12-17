@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    image: lemniscatex/se-web:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "mysql"
+    environment:
+      WAIT_HOSTS: mysql:3306
+    restart: always
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_PASSWORD=rjgc123
+      - MYSQL_DATABASE=rjgc2499
+      - MYSQL_USER=rjgc
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    ports:
+      - "3306"
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    restart: always
